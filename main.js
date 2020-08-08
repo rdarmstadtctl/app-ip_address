@@ -91,7 +91,7 @@ function getFirstIpAddress(cidrStr, callback) {
     if( mappedAddress ) {
         firstIpv6Address = mappedAddress
     } else {
-        firstIpv6Address = "null"
+        firstIpv6Address = null
         callbackError = `Problem converting IPv4 ${firstIpAddress} into a mapped IPv6 address.`;
     }
   }
@@ -125,9 +125,11 @@ function main() {
       // Display the results on the console.
       if (error) {
         console.error(`  Error returned from GET request: ${error}`);
-      }
+        console.log(`  Response returned from GET request: {"ipv4":${data},"ipv6":${data2}}`);
+      } else {
       console.log(`  Response returned from GET request: {"ipv4":"${data}","ipv6":"${data2}"}`);
       //console.log(`  Response returned from GET request: ${data2}`);
+      }
     });
   }
   // Iterate over sampleIpv4s and pass the element's value to getIpv4MappedIpv6Address().
