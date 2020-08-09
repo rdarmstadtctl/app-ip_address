@@ -88,10 +88,19 @@ getFirstIpAddress(cidrStr, callback) {
         callbackError = `Problem converting IPv4 ${firstIpAddress} into a mapped IPv6 address.`;
     }
 
-    firstIpAddress = {ipv4,ipv6};
+    var obj = {};
+    obj["ipv4"] = {};
+    obj["ipv6"] = {};
+    var objStr = {};
 
-    return callback(firstIpAddress, callbackError);
+    obj["ipv4"] = ipv4;
+    obj["ipv6"] = ipv6;
+
+    objStr = JSON.stringify(obj);
+
+    return callback(obj, callbackError);
   }
+}
 }
 
 module.exports = new IpAddress;
