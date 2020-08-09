@@ -61,10 +61,13 @@ function getFirstIpAddress(cidrStr, callback) {
     // Notice the destructering assignment syntax to get the value of the first array's element.
     [firstIpAddress] = cidr.toArray(options);
   
+    // Get the mapped ipv6 address by calling the helper function getIpv4MappedIpv6Address.
     mappedAddress = getIpv4MappedIpv6Address(firstIpAddress);
     if( mappedAddress ) {
+        // Mapping succeeded
         firstIpv6Address = mappedAddress
     } else {
+        // Mapping failed
         firstIpv6Address = null
         callbackError = `Problem converting IPv4 ${firstIpAddress} into a mapped IPv6 address.`;
     }
