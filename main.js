@@ -53,10 +53,18 @@ class IpAddress {
 getFirstIpAddress(cidrStr, callback) {
 
   // Initialize return arguments for callback
-  let firstIpAddress = null;
-  let ipv4 = null;
-  let ipv6 = null;
-  let callbackError = null;
+    let firstIpAddress = {
+        ipv4: null,
+        ipv6: null
+    };
+    let callbackError = null;
+
+
+
+//$$  let firstIpAddress = null;
+//$$  let ipv4 = null;
+//$$  let ipv6 = null;
+//$$  let callbackError = null;
 
   // Instantiate an object from the imported class and assign the instance to variable cidr.
   const cidr = new IPCIDR(cidrStr);
@@ -75,31 +83,34 @@ getFirstIpAddress(cidrStr, callback) {
   } else {
     // If the passed CIDR is valid, call the object's toArray() method.
     // Notice the destructering assignment syntax to get the value of the first array's element.
-    [ipv4] = cidr.toArray(options);
-  
-    // Get the mapped ipv6 address by calling the helper function getIpv4MappedIpv6Address.
-    mappedAddress = getIpv4MappedIpv6Address(ipv4);
-    if( mappedAddress ) {
-        // Mapping succeeded
-        ipv6 = mappedAddress
-    } else {
-        // Mapping failed
-        ipv6 = null
-        callbackError = `Problem converting IPv4 ${firstIpAddress} into a mapped IPv6 address.`;
+//$$    [ipv4] = cidr.toArray(options);
+//$$  
+//$$    // Get the mapped ipv6 address by calling the helper function getIpv4MappedIpv6Addr//$$ess.
+//$$    mappedAddress = getIpv4MappedIpv6Address(ipv4);
+//$$    if( mappedAddress ) {
+//$$        // Mapping succeeded
+//$$        ipv6 = mappedAddress
+//$$    } else {
+//$$        // Mapping failed
+//$$        ipv6 = null
+//$$        callbackError = `Problem converting IPv4 ${firstIpAddress} into a mapped IPv6 address.`;
+        [firstIpAddress] = cidr.toArray(options);
+        firstIpAddress.ipv6 = getIpv4MappedIpv6Address(firstIpAddress.ipv4);
     }
 
-    var obj = {};
-    obj["ipv4"] = {};
-    obj["ipv6"] = {};
-    var objStr = {};
+//$$    var obj = {};
+//$$    obj["ipv4"] = {};
+//$$    obj["ipv6"] = {};
+//$$    var objStr = {};
 
-    obj["ipv4"] = ipv4;
-    obj["ipv6"] = ipv6;
+//$$    obj["ipv4"] = ipv4;
+//$$    obj["ipv6"] = ipv6;
 
-    objStr = JSON.stringify(obj);
+//$$    objStr = JSON.stringify(obj);
 
-    return callback(obj, callbackError);
-  }
+//$$    return callback(obj, callbackError);
+ return callback(firstIpAddress, callbackError);
+
 }
 }
 
