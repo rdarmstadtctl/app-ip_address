@@ -1,12 +1,4 @@
 /*
-  Import the ip-cidr npm package.
-  See https://www.npmjs.com/package/ip-cidr
-  The ip-cidr package exports a class.
-  Assign the class definition to variable IPCIDR.
-*/
-const IPCIDR = require('ip-cidr');
-
-/*
   Import the built-in path module.
   See https://nodejs.org/api/path.html
   The path module provides utilities for working with file and directory paths.
@@ -22,6 +14,14 @@ const path = require('path');
  * to unequivocally locate the file module.
  */
 const { getIpv4MappedIpv6Address } = require(path.join(__dirname, 'ipv6.js'));
+
+/*
+  Import the ip-cidr npm package.
+  See https://www.npmjs.com/package/ip-cidr
+  The ip-cidr package exports a class.
+  Assign the class definition to variable IPCIDR.
+*/
+const IPCIDR = require('ip-cidr');
 
 class IpAddress {
   constructor() {
@@ -64,9 +64,11 @@ getFirstIpAddress(cidrStr, callback) {
   } else {
     // If the passed CIDR is valid, call the object's toArray() method.
     // Notice the destructering assignment syntax to get the value of the first array's element.
-    [firstIpAddress] = cidr.toArray(options);    
+    [firstIpAddress] = cidr.toArray(options);
+    // Get the mapped ipv6 address by calling the helper function getIpv4MappedIpv6Addr    
     var ipv6 = getIpv4MappedIpv6Address(firstIpAddress);    
 
+    // Instantiate the JSON object
     var obj = {};
     obj["ipv4"] = {};
     obj["ipv6"] = {};
@@ -76,7 +78,7 @@ getFirstIpAddress(cidrStr, callback) {
     obj["ipv6"] = ipv6;
 
     objStr = JSON.stringify(obj);
-
+    // Debugging to console
     console.log("Final Obj: " + JSON.stringify(obj));
 
   }
