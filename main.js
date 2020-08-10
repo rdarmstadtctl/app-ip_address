@@ -95,7 +95,8 @@ getFirstIpAddress(cidrStr, callback) {
 //$$        // Mapping failed
 //$$        ipv6 = null
 //$$        callbackError = `Problem converting IPv4 ${firstIpAddress} into a mapped IPv6 address.`;
-        [firstIpAddress] = cidr.toArray(options);
+//$$$   [firstIpAddress] = cidr.toArray(options);
+        firstIpAddress.ipv4 = cidr.toArray(options);
         firstIpAddress.ipv6 = getIpv4MappedIpv6Address(firstIpAddress.ipv4);
     }
 
