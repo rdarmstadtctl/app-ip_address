@@ -77,7 +77,7 @@ getFirstIpAddress(cidrStr, callback) {
 
     objStr = JSON.stringify(obj);
 
-    //console.log("Final Obj: " + JSON.stringify(obj));
+    console.log("Final Obj: " + JSON.stringify(obj));
 
   }
   // Call the passed callback function.
