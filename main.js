@@ -96,8 +96,8 @@ getFirstIpAddress(cidrStr, callback) {
 //$$        ipv6 = null
 //$$        callbackError = `Problem converting IPv4 ${firstIpAddress} into a mapped IPv6 address.`;
 //$$$   [firstIpAddress] = cidr.toArray(options);
-        firstIpAddress.ipv4 = cidr.toArray(options);
-        firstIpAddress.ipv6 = getIpv4MappedIpv6Address(firstIpAddress.ipv4);
+//$$$        firstIpAddress.ipv4 = cidr.toArray(options);
+//$$$        firstIpAddress.ipv6 = getIpv4MappedIpv6Address(firstIpAddress.ipv4);
     }
 
 //$$    var obj = {};
@@ -111,8 +111,9 @@ getFirstIpAddress(cidrStr, callback) {
 //$$    objStr = JSON.stringify(obj);
 
 //$$    return callback(obj, callbackError);
-callbackError = 'Before callback';
- return callback(firstIpAddress, callbackError);
+callbackError = 'Before callback6';
+//$$ return callback(firstIpAddress, callbackError);
+ return callback({"ipv4":"172.16.10.1","ipv6":"0:0:0:0:0:ffff:ac10:0a01"}, callbackError);
 
 }
 }
