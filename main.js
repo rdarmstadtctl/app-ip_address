@@ -111,9 +111,9 @@ getFirstIpAddress(cidrStr, callback) {
 //$$    objStr = JSON.stringify(obj);
 
 //$$    return callback(obj, callbackError);
-callbackError = 'Before callback6';
+callbackError = 'Before callback8';
 //$$ return callback(firstIpAddress, callbackError);
- return callback({"ipv4":"172.16.10.1","ipv6":"0:0:0:0:0:ffff:ac10:0a01"}, callbackError);
+ return callback("Test8", callbackError);
 
 }
 }
