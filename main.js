@@ -81,6 +81,7 @@ getFirstIpAddress(cidrStr, callback) {
     // If the passed CIDR is invalid, set an error message.
     callbackError = 'Error: Invalid CIDR passed to getFirstIpAddress.';
   } else {
+      callbackError = 'After else of invalid CIDR';
     // If the passed CIDR is valid, call the object's toArray() method.
     // Notice the destructering assignment syntax to get the value of the first array's element.
 //$$    [ipv4] = cidr.toArray(options);
@@ -109,6 +110,7 @@ getFirstIpAddress(cidrStr, callback) {
 //$$    objStr = JSON.stringify(obj);
 
 //$$    return callback(obj, callbackError);
+callbackError = 'Before callback';
  return callback(firstIpAddress, callbackError);
 
 }
